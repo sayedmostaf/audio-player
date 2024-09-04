@@ -1,12 +1,15 @@
 import 'package:audio_player/config/colors.dart';
+import 'package:audio_player/controller/song_player_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class SongControllerButtons extends StatelessWidget {
   const SongControllerButtons({super.key});
 
   @override
   Widget build(BuildContext context) {
+    SongPlayerController songPlayerController = Get.put(SongPlayerController());
     return Column(
       children: [
         Row(
@@ -33,20 +36,48 @@ class SongControllerButtons extends StatelessWidget {
             const SizedBox(
               width: 40,
             ),
-            Container(
-              width: 55,
-              height: 55,
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: primaryColor,
-                borderRadius: BorderRadius.circular(100),
-              ),
-              child: Center(
-                child: SvgPicture.asset(
-                  'assets/icons/play.svg',
-                  width: 25,
-                ),
-              ),
+            Obx(
+              () => !songPlayerController.isPlaying.value
+                  ? InkWell(
+                      onTap: () {
+                        songPlayerController.resumePlaying();
+                      },
+                      child: Container(
+                        width: 55,
+                        height: 55,
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: primaryColor,
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: Center(
+                          child: SvgPicture.asset(
+                            'assets/icons/play.svg',
+                            width: 25,
+                          ),
+                        ),
+                      ),
+                    )
+                  : InkWell(
+                      onTap: () {
+                        songPlayerController.pausePlaying();
+                      },
+                      child: Container(
+                        width: 55,
+                        height: 55,
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: primaryColor,
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: Center(
+                          child: SvgPicture.asset(
+                            'assets/icons/pause.svg',
+                            width: 25,
+                          ),
+                        ),
+                      ),
+                    ),
             ),
             const SizedBox(
               width: 40,
