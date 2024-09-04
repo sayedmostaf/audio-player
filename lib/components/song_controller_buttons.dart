@@ -12,16 +12,18 @@ class SongControllerButtons extends StatelessWidget {
     SongPlayerController songPlayerController = Get.put(SongPlayerController());
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('02:34'),
-            const Text('/'),
-            Text(
-              '2.34',
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-          ],
+        Obx(
+          () => Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('${songPlayerController.currentTime}'),
+              const Text('/'),
+              Text(
+                '${songPlayerController.totalTime}',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ],
+          ),
         ),
         const SizedBox(
           height: 20,

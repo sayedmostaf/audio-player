@@ -88,7 +88,10 @@ class SongPage extends StatelessWidget {
                                   songName: e.title,
                                   onPressed: () {
                                     songPlayerController.playLocalAudio(e.data);
-                                    Get.to(const PlaySongPage());
+                                    Get.to(PlaySongPage(
+                                      songTitle: e.title,
+                                      artistName: e.artist!,
+                                    ));
                                   },
                                 ),
                               )
