@@ -1,13 +1,16 @@
+import 'package:audio_player/controller/song_player_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class SongDetails extends StatelessWidget {
-  const SongDetails(
-      {super.key, required this.songTitle, required this.artistName});
-  final String songTitle, artistName;
+  const SongDetails({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    SongPlayerController songPlayerController = Get.put(SongPlayerController());
     return Column(
       children: [
         Row(
@@ -29,10 +32,12 @@ class SongDetails extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Flexible(
-              child: Text(
-                songTitle,
-                style: Theme.of(context).textTheme.bodyLarge,
-                maxLines: 1,
+              child: Obx(
+                () => Text(
+                  songPlayerController.songTitle.value,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                  maxLines: 1,
+                ),
               ),
             ),
             SvgPicture.asset(
@@ -44,13 +49,15 @@ class SongDetails extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        Row(
-          children: [
-            Text(
-              artistName,
-              style: Theme.of(context).textTheme.bodySmall,
-            )
-          ],
+        Obx(
+          () => Row(
+            children: [
+              Text(
+                songPlayerController.songArtist.value,
+                style: Theme.of(context).textTheme.bodySmall,
+              )
+            ],
+          ),
         ),
       ],
     );

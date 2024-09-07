@@ -5,13 +5,12 @@ import 'package:audio_player/components/song_details.dart';
 import 'package:flutter/material.dart';
 
 class PlaySongPage extends StatelessWidget {
-  const PlaySongPage(
-      {super.key, required this.songTitle, required this.artistName});
-  final String songTitle;
-  final String? artistName;
+  const PlaySongPage({
+    super.key,
+  });
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10),
@@ -24,15 +23,12 @@ class PlaySongPage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const SongControlSound(),
+              SongControlSound(),
               const SizedBox(
                 height: 40,
               ),
-              SongDetails(
-                artistName: artistName!,
-                songTitle: songTitle,
-              ),
-              const Spacer(),
+              SongDetails(),
+              Spacer(),
               const SongControllerButtons(),
             ],
           ),
