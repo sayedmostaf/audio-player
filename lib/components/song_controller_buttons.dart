@@ -125,9 +125,19 @@ class SongControllerButtons extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            SvgPicture.asset(
-              'assets/icons/shuffle.svg',
-              width: 20,
+            InkWell(
+              onTap: () {
+                songPlayerController.playRandomSong();
+              },
+              child: Obx(
+                () => SvgPicture.asset(
+                  'assets/icons/shuffle.svg',
+                  color: songPlayerController.isLoop.value
+                      ? primaryColor
+                      : lableColor,
+                  width: 20,
+                ),
+              ),
             ),
             InkWell(
               onTap: () {

@@ -12,6 +12,7 @@ class SongPlayerController extends GetxController {
   RxString songTitle = "".obs;
   RxString songArtist = "".obs;
   RxBool isLoop = false.obs;
+  RxBool isSuffled = false.obs;
 
   void playLocalAudio(SongModel song) async {
     songTitle.value = song.title;
@@ -43,6 +44,15 @@ class SongPlayerController extends GetxController {
 
   void changeSongSlider(Duration position) {
     player.seek(position);
+  }
+
+  void playRandomSong() async {
+    if (isSuffled.value) {
+      await player.setShuffleModeEnabled(false);
+    } else {
+      await player.setShuffleModeEnabled(true);
+    }
+    isSuffled.value = !isSuffled.value;
   }
 
   void pausePlaying() async {
