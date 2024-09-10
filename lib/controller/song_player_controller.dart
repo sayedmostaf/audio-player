@@ -13,6 +13,7 @@ class SongPlayerController extends GetxController {
   RxString songArtist = "".obs;
   RxBool isLoop = false.obs;
   RxBool isSuffled = false.obs;
+  RxDouble volumeLevel = 0.2.obs;
 
   void playLocalAudio(SongModel song) async {
     songTitle.value = song.title;
@@ -53,6 +54,11 @@ class SongPlayerController extends GetxController {
       await player.setShuffleModeEnabled(true);
     }
     isSuffled.value = !isSuffled.value;
+  }
+
+  void changeVolume(double volume) {
+    volumeLevel.value = volume;
+    player.setVolume(volumeLevel.value);
   }
 
   void pausePlaying() async {

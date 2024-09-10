@@ -132,7 +132,7 @@ class SongControllerButtons extends StatelessWidget {
               child: Obx(
                 () => SvgPicture.asset(
                   'assets/icons/shuffle.svg',
-                  color: songPlayerController.isLoop.value
+                  color: songPlayerController.isSuffled.value
                       ? primaryColor
                       : lableColor,
                   width: 20,
